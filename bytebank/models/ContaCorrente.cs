@@ -1,77 +1,71 @@
 ﻿namespace bytebank.models
 {
-    internal class ContaCorrente
+    public class ContaCorrente
     {
-        private string titular;
-        private string conta;
-        private string agencia;
-        private int numero_agencia;
-        private double saldo;
+        public Cliente Titular { get; }
+        public string Conta { get; }
+        public string Agencia { get; }
+        public int NumeroAgencia { get; }
+        public double Saldo { get; set; }
 
-        public ContaCorrente(string titular, string conta, string agencia, int numero_agencia, double saldo)
+        public ContaCorrente(Cliente titular, string conta, string agencia, int numero_agencia)
         {
-            this.titular = titular;
-            this.conta = conta;
-            this.agencia = agencia;
-            this.numero_agencia = numero_agencia;
-            this.saldo = saldo;
+            Titular = titular;
+            Conta = conta;
+            Agencia = agencia;
+            NumeroAgencia = numero_agencia;
+            Saldo = 0.0;
         }
 
-        public string Titular => titular;
-
-        public string Conta => conta;
-
-        public string NomeAgencia => agencia;
-
-        public int NumeroAgencia => numero_agencia;
-
-        public double Saldo => saldo;
-
-
         public bool Saca(double valor)
-            /*
-             * O valor de saque não deve ser maior que o valor do saldo
-             * O valor de saque deve ser maior que 5.0
-             */
         {
-            if (saldo < valor || valor < 5.0)
+            /*
+            * O valor de saque não deve ser maior que o valor do saldo
+            * O valor de saque deve ser maior que 5.0
+            */
+            if (Saldo < valor || valor < 5.0)
             {
                 return false;
             }
             else
             {
-                saldo -= valor;
+                Saldo -= valor;
                 return true;
             }
         }
 
         public void Deposita(double valor)
         {
-            if (valor > 0)
+            /*
+            * O valor de deposito deve ser maior que 5.0
+            */
+            if (valor > 5.0)
             {
-                saldo += valor;
+                Saldo += valor;
             }
         }
 
         public bool Transfere(ContaCorrente conta, double valor)
         {
-            if (saldo < valor || valor < 5.0)
+            /*
+            * O valor de transferencia não deve ser maior que o valor do saldo
+            * O valor de transferencia deve ser maior que 5.0
+            */
+            if (Saldo < valor || valor < 5.0)
             {
                 return false;
             }
-            else
-            {
-                conta.Deposita(valor);
-                this.Saca(valor);
-                return true;
-            }
+
+            conta.Deposita(valor);
+            this.Saca(valor);
+            return true;
         }
 
         public override string ToString()
         {
-            return "Titular: " + titular + ", conta: " + conta +
-                   ", agencia: " + agencia + ", número da agencia: " +
-                   numero_agencia + ", saldo: " + saldo;
+            return "Titular: " + Titular + ", Conta: " + Conta +
+                   ", agencia: " + Agencia + ", número da agencia: " +
+                   NumeroAgencia + ", saldo: " + Saldo;
         }
     }
 }
