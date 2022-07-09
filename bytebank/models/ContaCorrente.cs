@@ -8,12 +8,12 @@
         public int NumeroAgencia { get; }
         public double Saldo { get; set; }
 
-        public ContaCorrente(Cliente titular, string conta, string agencia, int numero_agencia)
+        public ContaCorrente(Cliente titular, string conta, string agencia, int numeroAgencia)
         {
             Titular = titular;
             Conta = conta;
             Agencia = agencia;
-            NumeroAgencia = numero_agencia;
+            NumeroAgencia = numeroAgencia;
             Saldo = 0.0;
         }
 
