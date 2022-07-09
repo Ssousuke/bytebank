@@ -1,18 +1,11 @@
 ﻿namespace bytebank.models;
 
-public class Cliente
+public struct Cliente
 {
-    public string TitularNome { get; }
-    public string TitularCpf { get; }
-    public string TitularProfissao { get; }
+    public string TitularNome { get; set; }
+    public string TitularCpf { get; set; }
+    public string TitularProfissao { get; set; }
 
-
-    public Cliente(string titularNome, string titularCpf, string titularProfissao)
-    {
-        TitularNome = titularNome;
-        TitularCpf = titularCpf;
-        TitularProfissao = titularProfissao;
-    }
 
     public override string ToString()
     {
