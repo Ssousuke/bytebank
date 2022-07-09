@@ -5,3 +5,4 @@ Projeto utilizando Orientação a objetos em C#
 - Propriedades
 - Construtores
 - Métodos estáticos
+- structs
